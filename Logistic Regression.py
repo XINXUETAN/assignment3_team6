@@ -4,25 +4,17 @@ from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 seed_num = 100
 print("---------------------------------------")
 # Define functions
-def evaluate_model(model, dataset, name):
+def evaluate_model(model, dataset):
     predictions = model.transform(dataset)
     evaluator = MulticlassClassificationEvaluator(
         labelCol="label_index", predictionCol="prediction", metricName="accuracy"
     )
     accuracy = evaluator.evaluate(predictions)
-    print(f"Accuracy of {name}: {accuracy}")
-    return 
+    return accuracy
 
-data_path = "file:/Workspace/Users/tan.xinxue@health.govt.nz/MAI/kdd.data"
+data_path = "file:/Workspace/Users/tan.xinxue@health.govt.nz/MAI/assignment3_team6/kdd.data"
 try:
-
-    df = (
-        spark.read.format("csv")
-        .option("header", "false")
-        .option("inferSchema", "true")
-        .load(data_path)
-    )
-
+    df = spark.read.format("csv").option("header", "False").option("inferSchema", "true").load(data_path)
     print("Data loaded successfully")
 
 except Exception as e:
@@ -88,7 +80,13 @@ lr_model = lr.fit(trainingData)
 print("---------------------------------------")
 # Evaluate model performance
 # Evaluate with training data
-evaluate_model(lr_model, trainingData, "Training Data")
-
+training_accuracy = evaluate_model(lr_model, trainingData)
+print(f"Training accuracy: {training_accuracy}")
 # Evaluate with test data
-evaluate_model(lr_model, testData, "Test Data")
+test_accuracy = evaluate_model(lr_model, testData)
+print(f"Test accuracy: {test_accuracy}")
+print("---------------------------------------")
+# Save training and test accuracy in a text file
+with open('/Workspace/Users/tan.xinxue@health.govt.nz/MAI/assignment3_team6/accuracy.txt', 'w') as f:
+    f.write(f"Training accuracy: {training_accuracy}\n")
+    f.write(f"Test accuracy: {test_accuracy}")
