@@ -1,0 +1,9 @@
+========== DecisionTree Summary 10 Runs ==========
+Train Accuracy: max=0.959563, min=0.948096, avg=0.957350, std=0.003149
+Test Accuracy : max=0.958468, min=0.945532, avg=0.955756, std=0.003524
+Running Time sec   : max=1.98, min=0.87, avg=1.02, std=0.32
+
+========== LogisticRegression Summary 10 Runs ==========
+Train Accuracy: max=0.884121, min=0.881023, avg=0.882647, std=0.000916
+Test Accuracy : max=0.885068, min=0.877358, avg=0.881911, std=0.002147
+Running Time sec   : max=1.44, min=0.77, avg=0.87, std=0.19
