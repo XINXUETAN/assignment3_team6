@@ -1,0 +1,6 @@
+
+========== LogisticRegression Summary 10 Runs ==========
+Train Accuracy: max=0.884558, min=0.881584, avg=0.882664, std=0.000863
+Test Accuracy : max=0.887336, min=0.880811, avg=0.883130, std=0.001743
+Running Time sec: max=1.99, min=1.13, avg=1.26, std=0.24
+

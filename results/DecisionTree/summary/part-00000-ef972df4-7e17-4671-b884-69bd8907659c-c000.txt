@@ -1,0 +1,6 @@
+
+========== DecisionTree Summary 10 Runs ==========
+Train Accuracy: max=0.959838, min=0.943267, avg=0.954407, std=0.006202
+Test Accuracy : max=0.959802, min=0.941964, avg=0.953356, std=0.006174
+Running Time sec: max=3.07, min=1.16, avg=1.43, std=0.55
+
