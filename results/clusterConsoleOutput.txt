@@ -1,0 +1,73 @@
+co246a-1% spark-submit \
+  --master yarn \
+  --deploy-mode cluster \
+  --conf spark.yarn.appMasterEnv.JAVA_HOME=/usr/lib/jvm/java-21-openjdk \
+  --conf spark.executorEnv.JAVA_HOME=/usr/lib/jvm/java-21-openjdk \
+  hdfs:///user/gaochen1/A3CodeAIO.py \
+  hdfs:///user/gaochen1/kdd.data \
+  hdfs:///user/gaochen1/results
+WARNING: Using incubator modules: jdk.incubator.vector
+26/05/26 15:14:09 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at co246a-9.ecs.vuw.ac.nz/130.195.4.139:8032
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/05/26 15:14:09 INFO Configuration: resource-types.xml not found
+26/05/26 15:14:09 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/05/26 15:14:09 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (8192 MB per container)
+26/05/26 15:14:09 INFO Client: Will allocate AM container, with 1408 MB memory including 384 MB overhead
+26/05/26 15:14:09 INFO Client: Setting up container launch context for our AM
+26/05/26 15:14:09 INFO Client: Setting up the launch environment for our AM container
+26/05/26 15:14:09 INFO Client: Preparing resources for our AM container
+26/05/26 15:14:09 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+26/05/26 15:14:09 INFO Client: Uploading resource file:/tmp/spark-5f0b2f5f-c6e0-4b8b-bc15-2d86811ee7ff/__spark_libs__18270660669159139741.zip -> hdfs://co246a-a.ecs.vuw.ac.nz:9000/user/gaochen1/.sparkStaging/application_1779246655912_0158/__spark_libs__18270660669159139741.zip
+26/05/26 15:14:09 INFO Client: Source and destination file systems are the same. Not copying hdfs:/user/gaochen1/A3CodeAIO.py
+26/05/26 15:14:09 INFO Client: Uploading resource file:/local/spark4/spark-4.1.1-bin-hadoop3/python/lib/pyspark.zip -> hdfs://co246a-a.ecs.vuw.ac.nz:9000/user/gaochen1/.sparkStaging/application_1779246655912_0158/pyspark.zip
+26/05/26 15:14:10 INFO Client: Uploading resource file:/local/spark4/spark-4.1.1-bin-hadoop3/python/lib/py4j-0.10.9.9-src.zip -> hdfs://co246a-a.ecs.vuw.ac.nz:9000/user/gaochen1/.sparkStaging/application_1779246655912_0158/py4j-0.10.9.9-src.zip
+26/05/26 15:14:10 INFO Client: Uploading resource file:/tmp/spark-5f0b2f5f-c6e0-4b8b-bc15-2d86811ee7ff/__spark_conf__9652675631852822383.zip -> hdfs://co246a-a.ecs.vuw.ac.nz:9000/user/gaochen1/.sparkStaging/application_1779246655912_0158/__spark_conf__.zip
+26/05/26 15:14:11 INFO SecurityManager: Changing view acls to: gaochen1
+26/05/26 15:14:11 INFO SecurityManager: Changing modify acls to: gaochen1
+26/05/26 15:14:11 INFO SecurityManager: Changing view acls groups to: gaochen1
+26/05/26 15:14:11 INFO SecurityManager: Changing modify acls groups to: gaochen1
+26/05/26 15:14:11 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: gaochen1 groups with view permissions: EMPTY; users with modify permissions: gaochen1; groups with modify permissions: EMPTY; RPC SSL disabled
+26/05/26 15:14:11 INFO HadoopDelegationTokenManager: Attempting to load user's ticket cache.
+26/05/26 15:14:11 INFO HadoopFSDelegationTokenProvider: getting token for: DFS[DFSClient[clientName=DFSClient_NONMAPREDUCE_-1871842490_1, ugi=gaochen1@ECS.VUW.AC.NZ (auth:KERBEROS)]] with renewer rm/co246a-9.ecs.vuw.ac.nz@ECS.VUW.AC.NZ
+26/05/26 15:14:11 INFO DFSClient: Created token for gaochen1: HDFS_DELEGATION_TOKEN owner=gaochen1@ECS.VUW.AC.NZ, renewer=rm, realUser=, issueDate=1779765251375, maxDate=1780370051375, sequenceNumber=8605, masterKeyId=344 on 130.195.4.140:9000
+26/05/26 15:14:11 INFO HadoopFSDelegationTokenProvider: getting token for: DFS[DFSClient[clientName=DFSClient_NONMAPREDUCE_-1871842490_1, ugi=gaochen1@ECS.VUW.AC.NZ (auth:KERBEROS)]] with renewer gaochen1@ECS.VUW.AC.NZ
+26/05/26 15:14:11 INFO DFSClient: Created token for gaochen1: HDFS_DELEGATION_TOKEN owner=gaochen1@ECS.VUW.AC.NZ, renewer=gaochen1, realUser=, issueDate=1779765251385, maxDate=1780370051385, sequenceNumber=8606, masterKeyId=344 on 130.195.4.140:9000
+26/05/26 15:14:11 INFO HadoopFSDelegationTokenProvider: Renewal interval is 86400008 for token HDFS_DELEGATION_TOKEN
+26/05/26 15:14:11 INFO DFSClient: Cancelling token for gaochen1: HDFS_DELEGATION_TOKEN owner=gaochen1@ECS.VUW.AC.NZ, renewer=gaochen1, realUser=, issueDate=1779765251385, maxDate=1780370051385, sequenceNumber=8606, masterKeyId=344 on 130.195.4.140:9000
+26/05/26 15:14:11 INFO HiveConf: Found configuration file null
+26/05/26 15:14:11 INFO Client: Submitting application application_1779246655912_0158 to ResourceManager
+26/05/26 15:14:12 INFO YarnClientImpl: Submitted application application_1779246655912_0158
+26/05/26 15:14:13 INFO Client: Application report for application_1779246655912_0158 (state: ACCEPTED)
+26/05/26 15:14:13 INFO Client: 
+         client token: Token { kind: YARN_CLIENT_TOKEN, service:  }
+         diagnostics: AM container is launched, waiting for AM container to Register with RM
+         ApplicationMaster host: N/A
+         ApplicationMaster RPC port: -1
+         queue: root.default
+         start time: 1779765251842
+         final status: UNDEFINED
+         tracking URL: https://co246a-9.ecs.vuw.ac.nz:8089/proxy/application_1779246655912_0158/
+         user: gaochen1
+26/05/26 15:14:20 INFO Client: Application report for application_1779246655912_0158 (state: RUNNING)
+26/05/26 15:14:20 INFO Client: 
+         client token: Token { kind: YARN_CLIENT_TOKEN, service:  }
+         diagnostics: N/A
+         ApplicationMaster host: co246a-2.ecs.vuw.ac.nz
+         ApplicationMaster RPC port: 41649
+         queue: root.default
+         start time: 1779765251842
+         final status: UNDEFINED
+         tracking URL: https://co246a-9.ecs.vuw.ac.nz:8089/proxy/application_1779246655912_0158/
+         user: gaochen1
+26/05/26 15:14:50 INFO Client: Application report for application_1779246655912_0158 (state: RUNNING)
+26/05/26 15:15:03 INFO Client: Application report for application_1779246655912_0158 (state: FINISHED)
+26/05/26 15:15:03 INFO Client: 
+         client token: Token { kind: YARN_CLIENT_TOKEN, service:  }
+         diagnostics: N/A
+         ApplicationMaster host: co246a-2.ecs.vuw.ac.nz
+         ApplicationMaster RPC port: 41649
+         queue: root.default
+         start time: 1779765251842
+         final status: SUCCEEDED
+         tracking URL: https://co246a-9.ecs.vuw.ac.nz:8089/proxy/application_1779246655912_0158/
+         user: gaochen1
