@@ -108,26 +108,42 @@ def output(spark,results,outputPath,suffix):
     testAccuracies = [r["testAccuracy"] for r in results]
     runtimes = [r["runningTime"] for r in results]
 
-    print(f"\n========== {suffix} Summary 10 Runs ==========")
+    summaryText = (
+        f"\n========== {suffix} Summary 10 Runs ==========\n"
+        f"Train Accuracy: max={max(trainAccuracies):.6f}, "
+        f"min={min(trainAccuracies):.6f}, "
+        f"avg={sum(trainAccuracies)/len(trainAccuracies):.6f}, "
+        f"std={StdDev(trainAccuracies):.6f}\n"
+        f"Test Accuracy : max={max(testAccuracies):.6f}, "
+        f"min={min(testAccuracies):.6f}, "
+        f"avg={sum(testAccuracies)/len(testAccuracies):.6f}, "
+        f"std={StdDev(testAccuracies):.6f}\n"
+        f"Running Time sec: max={max(runtimes):.2f}, "
+        f"min={min(runtimes):.2f}, "
+        f"avg={sum(runtimes)/len(runtimes):.2f}, "
+        f"std={StdDev(runtimes):.2f}\n"
+    )
 
-    print(f"Train Accuracy: max={max(trainAccuracies):.6f}, min={min(trainAccuracies):.6f}, "
-          f"avg={sum(trainAccuracies)/len(trainAccuracies):.6f}, std={StdDev(trainAccuracies):.6f}")
-    
-    print(f"Test Accuracy : max={max(testAccuracies):.6f}, min={min(testAccuracies):.6f}, "
-          f"avg={sum(testAccuracies)/len(testAccuracies):.6f}, std={StdDev(testAccuracies):.6f}")
-    
-    print(f"Running Time sec   : max={max(runtimes):.2f}, min={min(runtimes):.2f}, "
-          f"avg={sum(runtimes)/len(runtimes):.2f}, std={StdDev(runtimes):.2f}")
-    
-    print("\n")
+    # cannot see console print when run on cluster
+    print(summaryText)
 
+    # per-run
     resultsDf = spark.createDataFrame(results)
     (
         resultsDf.coalesce(1)
         .write.mode("overwrite")
         .option("header", "true")
-        .csv(outputPath)
+        .csv(outputPath+"/runs")
     )
+
+    # summary
+    summaryDf = spark.createDataFrame([(summaryText,)], ["value"])
+    (
+        summaryDf.coalesce(1)
+        .write.mode("overwrite")
+        .text(outputPath+"/summary")
+    )
+
     print(f"Saved {suffix} results to: {outputPath}")
 
 def StdDev(values):
